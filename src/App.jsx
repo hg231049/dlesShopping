@@ -28,7 +28,7 @@ function App() {
     }
 
     // 2. 모바일 햄버거 메뉴
-    const [menuOpen,setMenuOpen] = useState(null);
+    const [menuOpen,setMenuOpen] = useState(false);
 
     const onClickMenuBar = () => {
       setMenuOpen((prev)=>!prev)
@@ -43,9 +43,7 @@ function App() {
       </div>
       <Footer/>
       <BottomMenu cartCount={cartCount} onClickMenuBar={onClickMenuBar} />
-      {menuOpen &&
-        <SlideMenu onClickMenuBar={onClickMenuBar}/>
-      }
+      <SlideMenu onClickMenuBar={onClickMenuBar} menuOpen={menuOpen}/>
     </div>
   )
 }
