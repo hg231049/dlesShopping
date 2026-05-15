@@ -16,8 +16,8 @@ const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
         if (search.trim() === "") {
-        alert("검색어를 입력해주세요!");
-        return;
+            alert("검색어를 입력해주세요!");
+            return;
         }
 
         // 1. 검색 결과 페이지로 이동
