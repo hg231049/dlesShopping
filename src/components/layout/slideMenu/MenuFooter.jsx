@@ -1,6 +1,6 @@
 const MenuFooter = () => {
     return (
-       <div>푸터</div> 
+       <div></div> 
     )
 }
 
