@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route,Routes,useNavigate } from 'react-router-dom';
+import { Route,Routes,useNavigate,Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/header/Header';
 import Home from './components/main/Home';
@@ -62,10 +62,11 @@ function App() {
           <Header cartCount={cartCount} />
           <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
             <Routes>
-              <Route path="*" element={<Navigate to="/" replace />} />
+              
               <Route path='/' element={<Home  prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/list' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
           <Footer/>
