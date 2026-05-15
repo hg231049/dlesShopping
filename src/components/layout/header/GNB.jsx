@@ -1,11 +1,11 @@
 const MENU_LIST = [
-  { id: 1, name: "🌸봄맞이 기획전", link: "#none" ,point:true},
-  { id: 2, name: "NEW", link: "#none" },
-  { id: 3, name: "전체 상품", link: "#none" },
-  { id: 4, name: "단독 세트", link: "#none" },
-  { id: 5, name: "등/허리", link: "#none" },
-  { id: 6, name: "발/종아리", link: "#none" },
-  { id: 7, name: "손/눈", link: "#none" },
+  { id: 1, name: "🌸봄맞이 기획전", link: "/list" ,point:true},
+  { id: 2, name: "NEW", link: "/list" },
+  { id: 3, name: "전체 상품", link: "/list" },
+  { id: 4, name: "단독 세트", link: "/list" },
+  { id: 5, name: "등/허리", link: "/list" },
+  { id: 6, name: "발/종아리", link: "/list" },
+  { id: 7, name: "손/눈", link: "/list" },
 ];
 const GNB = () => {
     return (

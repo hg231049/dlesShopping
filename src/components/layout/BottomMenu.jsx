@@ -3,9 +3,9 @@ import { IconCate, IconMy, IconCart, IconHome, IconSearch } from '../icon/Icon';
 const Bottom_Menu = [
     { id: 1, name: "카테고리", link: "#none", icon:IconCate },
     { id: 2, name: "마이페이지", link: "#none", icon:IconMy },
-    { id: 3, name: "홈", link: "/", icon:IconHome},
+    { id: 3, name: "홈", link: "/home", icon:IconHome},
     { id: 4, name: "장바구니", link: "#none", icon:IconCart, cartCnt:true },
-    { id: 5, name: "검색", link: "#none", icon:IconSearch },
+    { id: 5, name: "검색", link: "/searchList", icon:IconSearch },
 ];
 const BottomMenu = ({cartCount,onClickMenuBar}) => {
     return (

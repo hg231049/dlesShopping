@@ -1,6 +1,6 @@
 
 import { IconMy, IconCart, IconOrder, IconLogout,IconSearch} from '../../icon/Icon'
-
+import { useNavigate } from 'react-router-dom';
 
 const Quick_Menu = [
     { id: 1, name: "마이페이지", link: "#none", icon:IconMy },
@@ -9,7 +9,23 @@ const Quick_Menu = [
     { id: 4, name: "로그아웃", link: "#none", icon:IconLogout },
 ];
 
-const MenuQuick = ({cartCount,search,onChangeSearch}) => {
+const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}) => {
+    const navigate = useNavigate();
+    // 검색 버튼 클릭 또는 엔터 시 실행될 함수
+    const handleSearchSubmit = (e) => {
+        e.preventDefault(); // 페이지 새로고침 방지
+
+        if (search.trim() === "") {
+        alert("검색어를 입력해주세요!");
+        return;
+        }
+
+        // 1. 검색 결과 페이지로 이동
+        navigate('/searchList');
+        
+        // 2. 이동 후 슬라이드 메뉴 닫기
+        onClickMenuBar(); 
+    };
 
     return(
         <div className="menu-quick flex flex-col gap-[15px] border-b-[10px] border-[#FBFBFB] p-[20px_20px_30px_20px]">
@@ -25,8 +41,10 @@ const MenuQuick = ({cartCount,search,onChangeSearch}) => {
                 )}
             </div>
             <div className="quick-search relative">
-                <input value={search} onChange={onChangeSearch} type="text" placeholder='검색어를 입력해 주세요' className='w-full h-[50px] border-b boder-black text-md'/>
-                <button className='absolute top-1/2 right-0 -translate-y-1/2'><IconSearch/></button>
+                <form onSubmit={handleSearchSubmit}>
+                    <input value={search} onChange={onChangeSearch} type="text" placeholder='검색어를 입력해 주세요' className='w-full h-[50px] border-b boder-black text-md'/>
+                </form>
+                <button type='submit' onClick={handleSearchSubmit} className='absolute top-1/2 right-0 -translate-y-1/2'><IconSearch/></button>
             </div>
         </div>
     )

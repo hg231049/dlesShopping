@@ -15,9 +15,9 @@ const SearchList = ({onAddCart,search,onChangeSearch,prdData}) => {
     return (
         <div className="pb-[120px]">
             <div className="inner">
-                <div className="titleArea flex flex-col gap-10 p-[40px_0_80px] text-center ">
-                    <h1 className="text-[36px] font-bold">검색결과</h1>
-                    <div className="quick-search relative max-w-[860px] w-full mx-auto">
+                <div className="titleArea p-[20px_0_40px] lg:p-[40px_0_80px] text-center ">
+                    <h1 className="text-[24px] lg:text-[36px] font-bold">검색결과</h1>
+                    <div className="quick-search relative max-w-[860px] w-full mx-auto mt-6">
                         <input value={search} onChange={onChangeSearch} type="text" placeholder='검색어를 입력해 주세요' className='w-full h-[50px] border-b boder-black text-md'/>
                         <button className='absolute top-1/2 right-0 -translate-y-1/2'><IconSearch/></button>
                     </div>
