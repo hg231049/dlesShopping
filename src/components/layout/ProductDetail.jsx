@@ -1,5 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useReducer } from 'react';
+
+function reducer(state,action){
+
+    switch(action.type){
+        case 'INCREASE' : return state + action.data;
+        case 'DECREASE' : return state - action.data > 0 ? state - action.data : 1;
+        default:return state;
+    }
+
+}
 
 const ProductDetail = ({prdData}) => {
     // useParams : 현재 브라우저 주소창(URL)에 적힌 파라미터(변수) 값을 쏙 빼서 쓸 수 있게 해주는 도구
@@ -15,22 +25,23 @@ const ProductDetail = ({prdData}) => {
     }
 
     // 총 상품 가격 및 개수
-    const [totalCount,setTotalCount] = useState(1);
+    const [state,dispatch] = useReducer(reducer,1);
     const onClickPlus = () => {
-        setTotalCount(totalCount + 1);
+       dispatch({
+            type:"INCREASE",
+            data:1,
+       })
+    }; 
+    const onClickMinus = () => {
+       dispatch({
+            type:"DECREASE",
+            data:1,
+       })
+    }; 
 
-    };
-     const onClickMinus = () => {
-        if(totalCount > 1){
-            setTotalCount(totalCount - 1);
-        } else {
-            setTotalCount(1)
-        }
-    };
-    
     // /[^0-9]/g : 숫자 0~9가 아닌 모든 것을 찾아 없엔 문자열을 숫자형으로 변환
     const numTotalPrice = typeof product.salePrice === "number" ? product.salePrice : Number(String(product.salePrice).replace(/[^0-9]/g, ''));
-    const totalPrice = numTotalPrice * totalCount;
+    const totalPrice = numTotalPrice * state;
     //console.log(numTotalPrice.toLocaleString());
 
     return (
@@ -63,13 +74,13 @@ const ProductDetail = ({prdData}) => {
                             <p className='font-bold text-md'>총 구매 금액</p>	
                             <div className='h-[28px] px-3 leading-[28px] border border-[#d3d3d3] rounded-[5px] [&_button]:text-[#d3d3d3] [&_button]:cursor-pointer'>
                                 <button onClick={onClickMinus}>-</button>				
-                                <input readOnly value={totalCount} className='w-[30px] text-center'/>
+                                <input readOnly value={state} className='w-[30px] text-center'/>
                                 <button onClick={onClickPlus}>+</button>	
                             </div>		
                         </div>
                         <div className='flex items-center gap-[5px] text-brand-color text-[24px] font-bold'>
                             {totalPrice.toLocaleString()}원
-                            <span className='text-sm font-normal text-black'>({totalCount})개</span>
+                            <span className='text-sm font-normal text-black'>({state})개</span>
                         </div>
                       </div>
                       <div className="prdBuyBtn mt-[30px]">
