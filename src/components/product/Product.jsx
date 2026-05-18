@@ -1,6 +1,7 @@
 
 import ProductCard from './ProductCard';
 import ProductHorizontal from './ProductHorizontal';
+import { Link } from 'react-router-dom';
 
 const Product = ({ items, limit, type,onAddCart }) => {
 
@@ -18,13 +19,13 @@ const Product = ({ items, limit, type,onAddCart }) => {
         <div className={`prd-list ${containerClass}`}>
             {[...displayList].slice(0, limit).map((item, index) => (
                 <div className='prd-item [.new_&]:mb-[10px] [.new_&]:pb-[10px] [.new_&]:border-b [.new_&]:border-[rgba(192,192,192,0.2)] [.new_&]:last:border-0' key={`${item.id}-${index}`}>
-                    <a href={item.link}>
+                    <Link to={`/detail/${item.id}`}>
                         {type === 'new' ? (
                             <ProductHorizontal item={item} index={index} onAddCart={onAddCart}/>
                         ) : (
                             <ProductCard item={item} index={index} showIndex={type === 'best'} onAddCart={onAddCart}/>
                         )}
-                    </a>
+                    </Link>
                 </div>
             ))}
         </div>

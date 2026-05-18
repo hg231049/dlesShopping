@@ -9,6 +9,7 @@ import BottomMenu from './components/layout/BottomMenu';
 import SlideMenu from './components/layout/slideMenu/SlideMenu';
 import List from './components/layout/productList/List';
 import SearchList from './components/layout/productList/SearchList';
+import ProductDetail from './components/layout/ProductDetail';
 import { ProductData } from './components/product/ProductData'
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
               <Route path='/' element={<Home  prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/list' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
+              <Route path='/detail/:id' element={<ProductDetail prdData={ProductData}/>}/>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
