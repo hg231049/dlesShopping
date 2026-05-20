@@ -11,7 +11,7 @@ function reducer(state,action){
 
 }
 
-const ProductDetail = ({prdData}) => {
+const ProductDetail = ({prdData,onAddCart}) => {
     // useParams : 현재 브라우저 주소창(URL)에 적힌 파라미터(변수) 값을 쏙 빼서 쓸 수 있게 해주는 도구
     const { id } = useParams(); // 주소창의 :id 값을 가져옵니다 (문자열)
 
@@ -69,8 +69,8 @@ const ProductDetail = ({prdData}) => {
                             />
                         )}
                       </ul>
-                      <div className="totalPrice flex justify-between items-baseline mt-[30px] pt-[10px] border-t border-[#D3D3D3]">
-                        <div className="flex gap-5">			
+                      <div className="totalPrice flex justify-between items-center mt-[30px] pt-[10px] border-t border-[#D3D3D3]">
+                        <div className="flex items-center gap-5">			
                             <p className='font-bold text-md'>총 구매 금액</p>	
                             <div className='h-[28px] px-3 leading-[28px] border border-[#d3d3d3] rounded-[5px] [&_button]:text-[#d3d3d3] [&_button]:cursor-pointer'>
                                 <button onClick={onClickMinus}>-</button>				
@@ -87,7 +87,7 @@ const ProductDetail = ({prdData}) => {
                         <div className='flex gap-[11px] [&_button]:flex-1 [&_button]:p-[16px_0] [&_button]:text-[#616161] [&_button]:text-[18px] [&_button]:text-center [&_button]:font-medium [&_button]:border [&_button]:border-[#ccc] [&_button]:cursor-pointer'>
                             <button className='!text-white bg-brand-color'>구매하기</button>
                             <button className='hidden lg:block'>선물하기</button>
-                            <button>장바구니</button>
+                            <button onClick={onAddCart}>장바구니</button>
                         </div>
                       </div>
                     </div>

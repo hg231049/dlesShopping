@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const Product = ({ items, limit, type,onAddCart }) => {
 
-
+    const isHorizontal = type === 'new' || type === 'row' ;
     // 타입에 따라 그리드/플렉스 레이아웃 결정
     const containerClass = 
-        type === 'new' ? "flex flex-col gap-0 " :// New는 세로로 쌓기
+        isHorizontal ? "flex flex-col gap-0 " :// New는 세로로 쌓기
         type === 'best' ? "grid grid-cols-2 gap-x-3 gap-y-5 lg:grid-cols-4":
         "grid grid-cols-2 gap-x-3 gap-y-5 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-20";// 기본은 격자형
 
@@ -18,9 +18,9 @@ const Product = ({ items, limit, type,onAddCart }) => {
     return (
         <div className={`prd-list ${containerClass}`}>
             {[...displayList].slice(0, limit).map((item, index) => (
-                <div className='prd-item [.new_&]:mb-[10px] [.new_&]:pb-[10px] [.new_&]:border-b [.new_&]:border-[rgba(192,192,192,0.2)] [.new_&]:last:border-0' key={`${item.id}-${index}`}>
+                <div className='prd-item [.row_&]:mb-[10px] [.row_&]:pb-[10px] [.new_&]:mb-[10px] [.new_&]:pb-[10px] [.new_&]:border-b [.new_&]:border-[rgba(192,192,192,0.2)] [.new_&]:last:border-0' key={`${item.id}-${index}`}>
                     <Link to={`/detail/${item.id}`}>
-                        {type === 'new' ? (
+                        {isHorizontal  ? (
                             <ProductHorizontal item={item} index={index} onAddCart={onAddCart}/>
                         ) : (
                             <ProductCard item={item} index={index} showIndex={type === 'best'} onAddCart={onAddCart}/>

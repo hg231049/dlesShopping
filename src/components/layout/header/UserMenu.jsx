@@ -1,8 +1,8 @@
 import { IconMy, IconCart } from '../../icon/Icon';
-
+import { Link } from 'react-router-dom';
 const User_Menu = [
   { id: 2, name: "회원가입", link: "#none", icon:IconMy },
-  { id: 3, name: "장바구니", link: "#none", icon:IconCart, cartCnt:true  },
+  { id: 3, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true  },
 ];
 const UserMenu = ({cartCount}) => {
     return (
@@ -13,7 +13,7 @@ const UserMenu = ({cartCount}) => {
 
                     return (
                         <li key={item.id} >
-                            <a href={item.link} className="flex justify-center flex-col gap-[5px] text-black font-normal text-xs text-center leading-none">
+                            <Link to={item.link} className="flex justify-center flex-col gap-[5px] text-black font-normal text-xs text-center leading-none">
                                 <span className='flex justify-center relative'>
                                     {Icon && <Icon className="w-6 h-6 text-black" />}
                                     <em className={`flex justify-center items-center absolute bottom-[-7%] right-0 w-[12px] h-[12px] leading-[12px] not-italic text-[10px] text-white bg-brand-color rounded-[100%] lg:right-[6px] ${item.cartCnt ? "block" : "hidden"}`}>{cartCount}</em>
@@ -21,7 +21,7 @@ const UserMenu = ({cartCount}) => {
                                 <div className="hidden lg:block">
                                     {item.name}
                                 </div>
-                            </a>
+                            </Link>
                         </li>
                     )
                 })}

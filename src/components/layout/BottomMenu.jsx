@@ -1,10 +1,10 @@
 import { IconCate, IconMy, IconCart, IconHome, IconSearch } from '../icon/Icon';
-
+import { Link } from 'react-router-dom';
 const Bottom_Menu = [
     { id: 1, name: "카테고리", link: "#none", icon:IconCate },
     { id: 2, name: "마이페이지", link: "#none", icon:IconMy },
     { id: 3, name: "홈", link: "/", icon:IconHome},
-    { id: 4, name: "장바구니", link: "#none", icon:IconCart, cartCnt:true },
+    { id: 4, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true },
     { id: 5, name: "검색", link: "/searchList", icon:IconSearch },
 ];
 const BottomMenu = ({cartCount,onClickMenuBar}) => {
@@ -22,13 +22,13 @@ const BottomMenu = ({cartCount,onClickMenuBar}) => {
                         }
                         return (
                             <li key={item.id}>
-                                <a href={item.link} onClick={handleClick}>
+                                <Link to={item.link} onClick={handleClick}>
                                     <span className="icon relative">
                                         {Icon && <Icon className="w-6 h-6 text-blac" />}
                                         <em className={`absolute bottom-[-7%] right-[20%] w-[12px] h-[12px] leading-[12px] not-italic text-[10px] text-white bg-brand-color rounded-[100%] ${item.cartCnt ? "block" : "hidden"}`}>{cartCount}</em>
                                     </span>
                                     <p className='mt-[6px] text-[12px]'>{item.name}</p>
-                                </a>
+                                </Link>
                             </li>
                         );
                    })}

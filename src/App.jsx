@@ -10,6 +10,7 @@ import SlideMenu from './components/layout/slideMenu/SlideMenu';
 import List from './components/layout/productList/List';
 import SearchList from './components/layout/productList/SearchList';
 import ProductDetail from './components/layout/ProductDetail';
+import Cart from './components/layout/Cart';
 import { ProductData } from './components/product/ProductData'
 
 function App() {
@@ -25,10 +26,10 @@ function App() {
     },[])
 
     // 2. 장바구니 카운트
-    const [cartCount,setCartCount] = useState(0);
+    const [cart,setCart] = useState([]);
 
-    const addToCart = () => {
-      setCartCount(prev => prev + 1)
+    const addToCart = (ProductData) => {
+      setCart([...cart,ProductData])
       alert("장바구니에 추가되었습니다");
     }
 
@@ -61,19 +62,20 @@ function App() {
     
         <div className="body">
           <Loading isHide={isHide}/>
-          <Header cartCount={cartCount} />
+          <Header cartCount={cart.length} />
           <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
             <Routes>
-              <Route path='/' element={<Home  prdData={ProductData} onAddCart={addToCart}/>}/>
-              <Route path='/list' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
+              <Route path='/' element={<Home prdData={ProductData} onAddCart={addToCart}/>}/>
+              <Route path='/list/:path' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
-              <Route path='/detail/:id' element={<ProductDetail prdData={ProductData}/>}/>
+              <Route path='/detail/:id' element={<ProductDetail prdData={ProductData} onAddCart={addToCart}/>}/>
+              <Route path='/cart' element={<Cart type="row" cart={cart}/>}/>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
           <Footer/>
-          <BottomMenu cartCount={cartCount} onClickMenuBar={onClickMenuBar} />
-          <SlideMenu onClickMenuBar={onClickMenuBar} menuOpen={menuOpen} cartCount={cartCount} search={search} onChangeSearch={onChangeSearch}/>
+          <BottomMenu cartCount={cart.length} onClickMenuBar={onClickMenuBar} />
+          <SlideMenu onClickMenuBar={onClickMenuBar} menuOpen={menuOpen} cartCount={cart.length} search={search} onChangeSearch={onChangeSearch}/>
         </div>
     
   )

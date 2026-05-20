@@ -18,7 +18,7 @@ const ProductCard = ({ item, index, showIndex,onAddCart }) => (
             onClick={(e) => {
                 e.preventDefault(); // 링크 이동 방지
                 e.stopPropagation(); // 이벤트 버블링 방지 (안전장치)
-                onAddCart();
+                onAddCart(item,1);
             }}
         >
             <IconCart/>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Quick_Menu = [
     { id: 1, name: "마이페이지", link: "#none", icon:IconMy },
-    { id: 2, name: "장바구니", link: "#none", icon:IconCart, cartCnt:true },
+    { id: 2, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true },
     { id: 3, name: "주문조회", link: "#none", icon:IconOrder },
     { id: 4, name: "로그아웃", link: "#none", icon:IconLogout },
 ];
