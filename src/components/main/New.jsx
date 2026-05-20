@@ -7,7 +7,7 @@ const New = ({ type,onAddCart,prdData }) => {
 
     return (
 
-        <div className={`main-box box4 ${type} my-[70px] lg:my-[96px_120px]`}>
+        <div className={`main-box box4 rowGrid ${type} my-[70px] lg:my-[96px_120px]`}>
             <div className="inner">
                 <div className="main-title mb-5 lg:mb-10">
                     <h2 className="text-2xl font-bold lg:text-center lg:text-[36px]">NEW ITEM</h2>

@@ -18,7 +18,7 @@ const Product = ({ items, limit, type,onAddCart }) => {
     return (
         <div className={`prd-list ${containerClass}`}>
             {[...displayList].slice(0, limit).map((item, index) => (
-                <div className='prd-item [.row_&]:mb-[10px] [.row_&]:pb-[10px] [.new_&]:mb-[10px] [.new_&]:pb-[10px] [.new_&]:border-b [.new_&]:border-[rgba(192,192,192,0.2)] [.new_&]:last:border-0' key={`${item.id}-${index}`}>
+                <div className='prd-item [.rowGrid_&]:mb-[10px] [.rowGrid_&]:pb-[10px] [.rowGrid_&]:border-b [.rowGrid_&]:border-[rgba(192,192,192,0.2)] [.rowGrid_&]:last:border-0' key={`${item.id}-${index}`}>
                     <Link to={`/detail/${item.id}`}>
                         {isHorizontal  ? (
                             <ProductHorizontal item={item} index={index} onAddCart={onAddCart}/>
