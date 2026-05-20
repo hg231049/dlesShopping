@@ -12,7 +12,7 @@ import SearchList from './components/layout/productList/SearchList';
 import ProductDetail from './components/layout/ProductDetail';
 import Cart from './components/layout/Cart';
 import { ProductData } from './components/product/ProductData'
-
+import ScrollToTop from "./components/layout/ScrollToTop";
 function App() {
   // 1. 로딩 스플래시
   // 초기에는 로딩 스플래시 나타남(= 숨김처리x)
@@ -62,6 +62,7 @@ function App() {
     
         <div className="body">
           <Loading isHide={isHide}/>
+           <ScrollToTop />
           <Header cartCount={cart.length} />
           <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
             <Routes>
