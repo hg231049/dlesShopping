@@ -26,9 +26,24 @@ function App() {
     },[])
 
     // 2. 장바구니 카운트
-    const [cart,setCart] = useState([]);
+    const [cart,setCart] = useState(() => {
+      const savedCart = localStorage.getItem('cart');
+    // 로컬스토리지에 데이터가 있으면 JSON으로 변환하고, 없으면 빈 배열([])을 기본값으로 사용합니다.
+    return savedCart ? JSON.parse(savedCart) : [];
+    });
+
+    useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]); // cart 배열이 바뀔 때마다 실행됨
 
     const addToCart = (ProductData) => {
+      // 중복 추가 방지 로직 (선택사항: 이미 있으면 수량을 늘리거나 알림 처리)
+      const isExist = cart.some((item) => item.id === ProductData.id);
+      if (isExist) {
+        alert("이미 장바구니에 담긴 상품입니다.");
+        return;
+      }
+
       setCart([...cart,ProductData])
       alert("장바구니에 추가되었습니다");
     }
@@ -57,7 +72,7 @@ function App() {
         setSearch(e.target.value);
     } 
 
-    
+
   return (
     
         <div className="body">
@@ -70,7 +85,7 @@ function App() {
               <Route path='/list/:path' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
               <Route path='/detail/:id' element={<ProductDetail prdData={ProductData} onAddCart={addToCart}/>}/>
-              <Route path='/cart' element={<Cart type="row" cart={cart}/>}/>
+              <Route path='/cart' element={<Cart type="cart" cart={cart} setCart={setCart} prdData={ProductData}/>}/>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>

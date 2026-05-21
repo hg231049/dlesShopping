@@ -6,7 +6,7 @@ const ProductHorizontal = ({ item,onAddCart }) => (
   <div className="flex gap-[10px] items-center lg:gap-[20px]">
     <div className="prd-thumb relative max-w-[105px] rounded-[5px] overflow-hidden flex-shrink-0 lg:max-w-[200px]">
         <img src={item.thumb} alt={item.name} className='w-full' />
-        <span className="cart absolute bottom-[10px] right-[10px] [.row_&]:hidden" 
+        <span className="cart absolute bottom-[10px] right-[10px]" 
                 onClick={(e) => {
                     e.preventDefault(); // 링크 이동 방지
                     e.stopPropagation(); // 이벤트 버블링 방지 (안전장치)
