@@ -44,6 +44,10 @@ const ProductDetail = ({prdData,onAddCart}) => {
     const totalPrice = numTotalPrice * state;
     //console.log(numTotalPrice.toLocaleString());
 
+     const formatPrice = (price) => {
+        return typeof price === 'number' ? `${price.toLocaleString()}원` : price;
+    };
+
     return (
         <div className='prdDetail'>
             <div className="inner">
@@ -56,9 +60,9 @@ const ProductDetail = ({prdData,onAddCart}) => {
                        <div className="prdPriceWrap flex gap-[10px] items-baseline mb-5">
                             <div className='flex gap-[10px] text-[22px] lg:text-[24px] font-bold'>
                                 <span className='text-[#FE2B00]'>{product.percent}</span>
-                                {product.salePrice}
+                                {formatPrice(product.salePrice)}
                             </div>
-                            <div className='text-[#ACACAC] text-[20px] font-medium line-through'>{product.orgPrice}</div>
+                            <div className='text-[#ACACAC] text-[20px] font-medium line-through'>{formatPrice(product.orgPrice)}</div>
                        </div>
                        <ul className='flex flex-col gap-[14px]'>
                         {product.desc?.map((descItem, idx) => 
