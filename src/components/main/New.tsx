@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import Product from '../product/Product'
+import {ProductItem} from './ProductData'
 
-const New = ({ type,onAddCart,prdData }) => {
+interface MainNewProps {
+    prdData:ProductItem[];
+    type:string;
+    onAddCart?:(data:ProductItem) => void;
+}
+const New = ({ type,onAddCart,prdData }:MainNewProps) => {
     // 1. 초기 노출 상품 4개
     const [visibleCount,setVisibleCount] = useState(2);
 

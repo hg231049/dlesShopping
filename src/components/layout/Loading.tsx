@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 
-const Loading = ({isHide}) => {
+interface LoadingProps {
+    isHide:boolean;
+}
+
+const Loading = ({isHide}:LoadingProps) => {
     return (
         <div 
             id="page-loader" 

@@ -1,8 +1,16 @@
 import ProductPrice from './ProductPrice';
 import { IconCart } from '../icon/Icon';
+import {ProductItem} from './ProductData'
+
+interface ProductCardProps {
+    item:ProductItem;
+    index:number;
+    showIndex:boolean;
+    onAddCart:(product:ProductItem) => void;
+}
 
 // 2. 카드형 (Best 섹션용)
-const ProductCard = ({ item, index, showIndex,onAddCart }) => (
+const ProductCard = ({ item, index, showIndex,onAddCart }:ProductCardProps) => (
   <div className="prd-item">
     <div className="prd-thumb relative rounded-[5px] overflow-hidden">
         {/* 2. showIndex가 true일 때만 렌더링 */}
@@ -18,7 +26,7 @@ const ProductCard = ({ item, index, showIndex,onAddCart }) => (
             onClick={(e) => {
                 e.preventDefault(); // 링크 이동 방지
                 e.stopPropagation(); // 이벤트 버블링 방지 (안전장치)
-                onAddCart(item,1);
+                onAddCart(item);
             }}
         >
             <IconCart/>
@@ -31,7 +39,6 @@ const ProductCard = ({ item, index, showIndex,onAddCart }) => (
     <ProductPrice 
         orgPrice={item.orgPrice} 
         salePrice={item.salePrice} 
-        percent={item.percent} 
         className="lg:flex lg:flex-row-reverse lg:items-center lg:justify-end lg:gap-[9px]" 
     />
     </div>

@@ -1,14 +1,21 @@
 // ProductPrice.jsx (또는 Product.jsx 상단)
+import {ProductItem} from './ProductData'
 
-  function calcDiscount(salePrice, orgPrice) {
+interface ProductPriceProps {
+  orgPrice:number;
+  salePrice:number;
+  className?:string; 
+}
+
+  function calcDiscount(salePrice:number, orgPrice:number) {
     if (!salePrice || !orgPrice || orgPrice <= salePrice) return 0;
     return Math.round((orgPrice - salePrice) / orgPrice * 100);
   }
  
 
-const ProductPrice = ({ orgPrice, salePrice, className = "" }) => {
+const ProductPrice = ({ orgPrice, salePrice, className = "" }:ProductPriceProps) => {
    const displayPercent = calcDiscount(salePrice, orgPrice);
-   const formatPrice = (price) => {
+   const formatPrice = (price:number):string => {
     return typeof price === 'number' ? `${price.toLocaleString()}원` : price;
   };
   return (

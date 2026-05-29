@@ -1,5 +1,18 @@
 import { useState } from "react";
-const cateMenu = [
+
+interface SubMenuItems {
+    id: number; 
+    name: string; 
+    link:string;
+}
+interface CateMenuItems {
+    id: number; 
+    name: string; 
+    link:string;
+    subItems?:SubMenuItems[];
+}
+
+const cateMenu:CateMenuItems[] = [
     {   
         id: 1, name: "제품구매하기", link: "#none",
         subItems : [
@@ -32,7 +45,7 @@ const cateMenu = [
 const SlideCate = () => {
     const [openCate,setOpenCate] = useState(null);
 
-    const onClickCate = (id) => {
+    const onClickCate = (id:number) => {
         setOpenCate(openCate === id ? null : id);
         
     }

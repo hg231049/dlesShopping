@@ -1,8 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useState,useReducer } from 'react';
+import {ProductItem} from './ProductData';
 
-function reducer(state,action){
+interface ProductDetailProps {
+    prdData:ProductItem[];
+    type:string;
+    onAddCart?:(data:ProductItem) => void;
+}
 
+interface ActionType {
+    type:'INCREASE'|'DECREASE';
+    data:number;
+}
+
+function reducer(state:number,action:ActionType){
     switch(action.type){
         case 'INCREASE' : return state + action.data;
         case 'DECREASE' : return state - action.data > 0 ? state - action.data : 1;
@@ -11,7 +22,7 @@ function reducer(state,action){
 
 }
 
-const ProductDetail = ({prdData,onAddCart}) => {
+const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
     // useParams : 현재 브라우저 주소창(URL)에 적힌 파라미터(변수) 값을 쏙 빼서 쓸 수 있게 해주는 도구
     const { id } = useParams(); // 주소창의 :id 값을 가져옵니다 (문자열)
 
@@ -40,12 +51,16 @@ const ProductDetail = ({prdData,onAddCart}) => {
     }; 
 
     // /[^0-9]/g : 숫자 0~9가 아닌 모든 것을 찾아 없엔 문자열을 숫자형으로 변환
-    const numTotalPrice = typeof product.salePrice === "number" ? product.salePrice : Number(String(product.salePrice).replace(/[^0-9]/g, ''));
+    const getPriceNumber = (price:number | string) => {
+        return typeof price === "number" ? price : Number(String(price).replace(/[^0-9]/g, ''));
+    }
+    const numTotalPrice = getPriceNumber(product.salePrice);
     const totalPrice = numTotalPrice * state;
     //console.log(numTotalPrice.toLocaleString());
 
-     const formatPrice = (price) => {
-        return typeof price === 'number' ? `${price.toLocaleString()}원` : price;
+     const formatPrice = (price:number | string) => {
+        const numbericPrice =  getPriceNumber(price);
+        return `${numbericPrice.toLocaleString()}원`
     };
 
     return (
@@ -65,7 +80,7 @@ const ProductDetail = ({prdData,onAddCart}) => {
                             <div className='text-[#ACACAC] text-[20px] font-medium line-through'>{formatPrice(product.orgPrice)}</div>
                        </div>
                        <ul className='flex flex-col gap-[14px]'>
-                        {product.desc?.map((descItem, idx) => 
+                        {product.desc?.map((descItem:string, idx:number) => 
                             <li
                                 key={idx}
                                 dangerouslySetInnerHTML={{ __html: descItem }}

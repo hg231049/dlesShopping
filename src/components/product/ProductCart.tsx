@@ -1,8 +1,16 @@
 import ProductPrice from './ProductPrice';
+import {ProductItem} from './ProductData'
 
+interface ProductCartProps {
+    item:ProductItem;
+    counts:Record<number,number>;
+    onClickPlus:(e:React.MouseEvent,id:number) => void;
+    onClickMinus:(e:React.MouseEvent,id:number) => void;
+    onDeleteCart:(e:React.MouseEvent,id:number) => void;
+}
 
 // 1. 가로형 (장바구니 섹션용)
-const ProductCart = ({ item, counts, onClickPlus, onClickMinus,onDeleteCart }) => {
+const ProductCart = ({ item, counts, onClickPlus, onClickMinus,onDeleteCart }:ProductCartProps) => {
   
    const count = counts[item.id] || 1;
 

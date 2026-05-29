@@ -3,7 +3,15 @@ import MenuQuick from "./MenuQuick";
 import SlideCate from "./SlideCate";
 import MenuFooter from "./MenuFooter";
 
-const SlideMenu = ({onClickMenuBar,menuOpen,cartCount,search,onChangeSearch}) => {
+interface SlideMenuProps {
+    onClickMenuBar:() => void;
+    menuOpen:boolean;
+    cartCount:number;
+    search:string;
+    onChangeSearch:(e:React.MouseEvent<HTMLInputElement>) => void;
+}
+
+const SlideMenu = ({onClickMenuBar,menuOpen,cartCount,search,onChangeSearch}:SlideMenuProps) => {
     
     return (
         <div className={`slideMenu scroll fixed top-0 w-full h-full z-50 bg-white shadow-2xl transition-all duration-300 ease-in-out overflow-y-scroll lg:hidden ${menuOpen ? "left-0" : "left-[-100%]"}`} >

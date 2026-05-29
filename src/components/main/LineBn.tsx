@@ -2,7 +2,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules'; 
 import { lineBn1,lineBn2,lineBnMo1,lineBnMo2 } from '../../assets/main';
 
-const Line_Bn = [
+interface LineBnItem {
+    id: number;
+    alt:string; 
+    link: string;
+    pc: string; 
+    mo:string;
+}
+
+const Line_Bn:LineBnItem[] = [
   { id: 1, alt:"슬라이드 띠배너1", link: "#none", pc: lineBn1, mo: lineBnMo1 },
   { id: 2, alt:"슬라이드 띠배너2", link: "#none", pc: lineBn2, mo: lineBnMo2},
 ];

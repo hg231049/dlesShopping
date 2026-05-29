@@ -1,10 +1,22 @@
 
-const userBenefit = [
+interface userBenefitItem {
+    id: number;
+    name: string;
+    link: string;
+    count:string;
+}
+
+interface MenuHeaderProps {
+    onClickMenuBar:() => void;
+}
+
+
+const userBenefit:userBenefitItem[] = [
     { id: 1, name: "쿠폰", link: "#none", count:"1개" },
     { id: 2, name: "적립금", link: "#none", count:"1,000,000원" },
     { id: 3, name: "작성 가능 리뷰", link: "#none", count:"0개"},
 ];
-const MenuHeader = ({onClickMenuBar}) => {
+const MenuHeader = ({onClickMenuBar}:MenuHeaderProps) => {
     return(
         <div className="menu-header text-white bg-brand-color">
                 <div className="user-info p-[20px_20px_10px_20px] ">

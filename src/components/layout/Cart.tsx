@@ -1,18 +1,25 @@
 import Product from "../../components/product/Product";
-import { useState } from "react";
+import React, { useState } from "react";
+import { ProductItem } from '../product/ProductData'; 
+
+interface CartProps {
+  cart:ProductItem[];
+  type:string;
+  onDeleteCart:(e:React.MouseEvent, id:number) => void;
+}
 
 // 가격을 숫자로 바꾸는 함수
-const getPriceNumber = (price) => {
+const getPriceNumber = (price:string | number) => {
   return typeof price === "number"
     ? price
     : Number(String(price).replace(/[^0-9]/g, ""));
 };
 
-const Cart = ({ cart, type,onDeleteCart }) => {
+const Cart = ({ cart, type,onDeleteCart }:CartProps) => {
     // 상품별 수량을 저장하는 state
-  const [counts, setCounts] = useState({});
+  const [counts, setCounts] = useState<Record<number,number>>({});
 
-  const onClickPlus = (e, id) => {
+  const onClickPlus = (e:React.MouseEvent, id:number) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -24,7 +31,7 @@ const Cart = ({ cart, type,onDeleteCart }) => {
     }));
   };
 
-  const onClickMinus = (e, id) => {
+  const onClickMinus = (e:React.MouseEvent, id:number) => {
     e.preventDefault();
     e.stopPropagation();
 

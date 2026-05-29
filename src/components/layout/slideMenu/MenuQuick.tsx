@@ -2,17 +2,32 @@
 import { IconMy, IconCart, IconOrder, IconLogout,IconSearch} from '../../icon/Icon'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-const Quick_Menu = [
+interface QuickMenuItem {
+    id: number; 
+    name: string;
+    link: string;
+    icon:React.ComponentType<{ className?: string }>;
+    cartCnt?:boolean;
+}
+interface MenuQuickProps {
+    cartCount:number;
+    search:string;
+    onChangeSearch:(e:React.MouseEvent<HTMLInputElement>)=> void;
+    onClickMenuBar:() => void;
+}
+
+
+const Quick_Menu:QuickMenuItem[] = [
     { id: 1, name: "마이페이지", link: "#none", icon:IconMy },
     { id: 2, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true },
     { id: 3, name: "주문조회", link: "#none", icon:IconOrder },
     { id: 4, name: "로그아웃", link: "#none", icon:IconLogout },
 ];
 
-const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}) => {
+const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}:MenuQuickProps) => {
     const navigate = useNavigate();
     // 검색 버튼 클릭 또는 엔터 시 실행될 함수
-    const handleSearchSubmit = (e) => {
+    const handleSearchSubmit = (e:React.FormEvent) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
         if (search.trim() === "") {
@@ -27,7 +42,7 @@ const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}) => {
         onClickMenuBar(); 
     };
 
-    const onClickQuick = (e) => {
+    const onClickQuick = (e:React.MouseEvent) => {
          onClickMenuBar(); 
     }
 
