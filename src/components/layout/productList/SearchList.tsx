@@ -1,7 +1,19 @@
 import Product from "../../product/Product";
 import { IconSearch} from '../../icon/Icon'
+import {ProductItem} from '../../product/ProductData'
+import React from "react";
 
-const SearchList = ({onAddCart,search,onChangeSearch,prdData}) => {
+interface ProductSearchListProps {
+    prdData:ProductItem[];
+    search:string;
+    onAddCart?:(data:ProductItem) => void;//이 함수를 실행할 때는 반드시 상품 데이터 1개(data)를 재료로 넣어줘야함
+    // 🌟 1. input 창의 변경 이벤트를 감지하는 정석적인 함수 타입을 정의합니다.
+    //  React.ChangeEvent: 리액트에서 "값이 변하는 이벤트(입력, 체크 등)"
+    // HTMLInputElement: input에서 일어난 변화라는걸 알려줌
+    onChangeSearch?:(e:React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const SearchList = ({onAddCart,search,onChangeSearch,prdData}:ProductSearchListProps) => {
     
     const getFilteredSearch = () => {
         if(search === ""){

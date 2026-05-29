@@ -1,5 +1,13 @@
 import { Link } from 'react-router-dom';
-const MENU_LIST = [
+interface MenuListItem {
+    id: number; 
+    name:string;
+    link:string;
+    path:string;
+    point?:boolean;
+}
+
+const MENU_LIST:MenuListItem[] = [
   { id: 1, name: "🌸봄맞이 기획전",path:"🌸봄맞이 기획전", link: "/list" ,point:true},
   { id: 2, name: "NEW", link: "/list",path:"NEW" },
   { id: 3, name: "전체 상품", link: "/list",path:"전체 상품" },

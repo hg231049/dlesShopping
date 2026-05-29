@@ -5,7 +5,11 @@ import GNB from './GNB';
 import UserMenu from './UserMenu';
 import Logo from '../Logo';
 
-const Header = ({cartCount}) => {
+interface HeaderProps {
+    cartCount:number;
+}
+
+const Header = ({cartCount}:HeaderProps) => {
     // 초기 상태에는 고정x
     const [isFixed, setIsFixed] = useState(false);
 

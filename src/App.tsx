@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route,Routes,useNavigate,Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/header/Header';
@@ -12,7 +12,7 @@ import SearchList from './components/layout/productList/SearchList';
 import ProductDetail from './components/layout/ProductDetail';
 import Cart from './components/layout/Cart';
 import ScrollToTop from "./components/layout/ScrollToTop";
-import { ProductData } from './components/product/ProductData'
+import { ProductData,ProductItem } from './components/product/ProductData'
 function App() {
   // 1. 로딩 스플래시
   // 초기에는 로딩 스플래시 나타남(= 숨김처리x)
@@ -26,7 +26,7 @@ function App() {
     },[])
 
     // 2. 장바구니 카운트
-    const [cart,setCart] = useState(() => {
+    const [cart,setCart] = useState<ProductItem[]>(() => {
       const savedCart = localStorage.getItem('cart');
     // 로컬스토리지에 데이터가 있으면 JSON으로 변환하고, 없으면 빈 배열([])을 기본값으로 사용합니다.
     return savedCart ? JSON.parse(savedCart) : [];
@@ -36,7 +36,7 @@ function App() {
       localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]); // cart 배열이 바뀔 때마다 실행됨
 
-    const addToCart = (ProductData) => {
+    const addToCart = (ProductData:ProductItem) => {
       // 중복 추가 방지 로직 (선택사항: 이미 있으면 수량을 늘리거나 알림 처리)
       const isExist = cart.some((item) => item.id === ProductData.id);
       if (isExist) {
@@ -48,7 +48,7 @@ function App() {
       alert("장바구니에 추가되었습니다");
     }
 
-    const onDeleteCart = (e,id) => {
+    const onDeleteCart = (e:React.MouseEvent,id:number) => {
        e.preventDefault();
       e.stopPropagation();
 
@@ -74,7 +74,7 @@ function App() {
 
     // 3. 검색
     const [search,setSearch] = useState("");
-    const onChangeSearch = (e) => {
+    const onChangeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault(); // 페이지 새로고침 방지
         setSearch(e.target.value);
     } 
@@ -92,7 +92,7 @@ function App() {
               <Route path='/list/:path' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
               <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
               <Route path='/detail/:id' element={<ProductDetail prdData={ProductData} onAddCart={addToCart}/>}/>
-              <Route path='/cart' element={<Cart type="cart" cart={cart} setCart={setCart} prdData={ProductData} onDeleteCart={onDeleteCart}/>}/>
+              <Route path='/cart' element={<Cart type="cart" cart={cart} onDeleteCart={onDeleteCart}/>}/>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>

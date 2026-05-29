@@ -1,5 +1,9 @@
-
-const Footer_Cs = [
+interface FooterCsItem {
+    id: number; 
+    name:string;
+    subTxt:string;
+}
+const Footer_Cs:FooterCsItem[] = [
   { id: 1, name: "1588-1303", subTxt: "평일 11:00 ~ 16:00 \n점심시간 12:30 ~ 13:30"},
   { id: 2, name: "1:1 채널톡", subTxt: "월~목 09:30 ~ 17:00 \n금 09:30 ~ 16:00 \n점심시간 12:30 ~ 13:30"},
 ];

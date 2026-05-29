@@ -1,6 +1,10 @@
 import { arrowRight } from '../../../assets/main/index';
-
-const Business_Menu = [
+interface BusinessMenuItem {
+    id: number; 
+    name:string;
+    link:string;
+}
+const Business_Menu:BusinessMenuItem[] = [
   { id: 1, name: "단체 선물", link: "#none" },
   { id: 2, name: "수출/해외협력", link: "#none" },
 ];

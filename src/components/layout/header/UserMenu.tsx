@@ -1,10 +1,22 @@
 import { IconMy, IconCart } from '../../icon/Icon';
 import { Link } from 'react-router-dom';
-const User_Menu = [
+interface UserMenuItem {
+    id: number; 
+    name:string;
+    link:string;
+    icon:React.ComponentType<{ className?: string }>;
+    cartCnt?:boolean;
+}
+
+interface UserMenuProps {
+    cartCount: number; 
+}
+
+const User_Menu:UserMenuItem[] = [
   { id: 2, name: "회원가입", link: "#none", icon:IconMy },
   { id: 3, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true  },
 ];
-const UserMenu = ({cartCount}) => {
+const UserMenu = ({cartCount}:UserMenuProps) => {
     return (
         <div className="userMenu">
             <ul className="flex items-center gap-[7px] lg:gap-[20px]">

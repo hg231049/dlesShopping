@@ -8,7 +8,7 @@ interface SlideMenuProps {
     menuOpen:boolean;
     cartCount:number;
     search:string;
-    onChangeSearch:(e:React.MouseEvent<HTMLInputElement>) => void;
+    onChangeSearch:(e:React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SlideMenu = ({onClickMenuBar,menuOpen,cartCount,search,onChangeSearch}:SlideMenuProps) => {

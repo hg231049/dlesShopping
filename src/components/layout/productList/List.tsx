@@ -1,7 +1,14 @@
 import Product from "../../product/Product";
 import { useParams } from "react-router-dom";
+import {ProductItem} from '../../product/ProductData'
 
-const List = ({onAddCart,prdData}) => {
+interface ProductListProps {
+    prdData:ProductItem[];
+    onAddCart?:(data:ProductItem) => void;
+    className?:string;
+}
+
+const List = ({onAddCart,prdData}:ProductListProps) => {
 
     // 상품 갯수
     const prdTotal = prdData.length;

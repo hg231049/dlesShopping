@@ -12,7 +12,7 @@ interface QuickMenuItem {
 interface MenuQuickProps {
     cartCount:number;
     search:string;
-    onChangeSearch:(e:React.MouseEvent<HTMLInputElement>)=> void;
+    onChangeSearch:(e:React.ChangeEvent<HTMLInputElement>)=> void;
     onClickMenuBar:() => void;
 }
 

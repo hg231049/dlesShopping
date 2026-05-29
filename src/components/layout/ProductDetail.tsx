@@ -4,7 +4,6 @@ import {ProductItem} from './ProductData';
 
 interface ProductDetailProps {
     prdData:ProductItem[];
-    type:string;
     onAddCart?:(data:ProductItem) => void;
 }
 
