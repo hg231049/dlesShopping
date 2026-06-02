@@ -20,8 +20,14 @@ function reducer(state:number,action:ActionType){
     }
 
 }
+function calcDiscount(salePrice:number, orgPrice:number) {
+    if (!salePrice || !orgPrice || orgPrice <= salePrice) return 0;
+    return Math.round((orgPrice - salePrice) / orgPrice * 100);
+  }
 
 const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
+     
+
     // useParams : 현재 브라우저 주소창(URL)에 적힌 파라미터(변수) 값을 쏙 빼서 쓸 수 있게 해주는 도구
     const { id } = useParams(); // 주소창의 :id 값을 가져옵니다 (문자열)
 
@@ -62,6 +68,11 @@ const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
         return `${numbericPrice.toLocaleString()}원`
     };
 
+    // 할인율
+    const displayPercent = calcDiscount(product.salePrice, product.orgPrice);
+    const formatedPrice = (price:number):string => {
+        return typeof price === 'number' ? `${price.toLocaleString()}원` : price;
+    };
     return (
         <div className='prdDetail'>
             <div className="inner">
@@ -71,9 +82,9 @@ const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
                     </div>
                     <div className="prdInfo w-full">
                        <h1 className='text-[24px] font-bold lg:mb-5 lg:pb-5  lg:border-b border-[#D3D3D3]'>{product.name}</h1> 
-                       <div className="prdPriceWrap flex gap-[10px] items-baseline mb-5">
+                       <div className="prdPriceWrap flex gap-[10px] items-center mb-5">
                             <div className='flex gap-[10px] text-[22px] lg:text-[24px] font-bold'>
-                                <span className='text-[#FE2B00]'>{product.percent}</span>
+                                <span className='text-[#FE2B00]'>{displayPercent}%</span>
                                 {formatPrice(product.salePrice)}
                             </div>
                             <div className='text-[#ACACAC] text-[20px] font-medium line-through'>{formatPrice(product.orgPrice)}</div>

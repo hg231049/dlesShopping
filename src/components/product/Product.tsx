@@ -23,7 +23,7 @@ const Product = ({ items, limit, type,onAddCart,onClickPlus,onClickMinus,totalPr
     const isHorizontal = type === 'new' || type === 'cart' ;
     // 타입에 따라 그리드/플렉스 레이아웃 결정
     const containerClass = 
-        isHorizontal ? "flex flex-col gap-0 " :// New는 세로로 쌓기
+        isHorizontal ? "flex flex-col gap-0 lg:gap-y-0" :// New는 세로로 쌓기
         type === 'best' ? "grid grid-cols-2 gap-x-3 gap-y-5 lg:grid-cols-4":
         "grid grid-cols-2 gap-x-3 gap-y-5 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-20";// 기본은 격자형
 

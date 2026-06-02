@@ -64,23 +64,26 @@ const Cart = ({ cart, type,onDeleteCart }:CartProps) => {
             장바구니가 비었습니다.
           </p>
         ) : (
-          <Product
-            type={type}
-            items={cart}
-            counts={counts}
-            onClickPlus={onClickPlus}
-            onClickMinus={onClickMinus}
-            onDeleteCart={onDeleteCart}
-            className="gap-y-20"
-          />
+          <>
+            <Product
+              type={type}
+              items={cart}
+              counts={counts}
+              onClickPlus={onClickPlus}
+              onClickMinus={onClickMinus}
+              onDeleteCart={onDeleteCart}
+              className="gap-y-20"
+            />
+            <div className="totalPrice flex flex-col gap-3 mt-10 pt-10 text-3xl font-bold text-center border-t">
+              {totalCartPrice.toLocaleString()}원
+              <span className="text-gray-500 text-xl font-normal">
+                총 주문 금액
+              </span>
+            </div>
+          </>
         )}
 
-        <div className="totalPrice flex flex-col gap-3 mt-10 pt-10 text-3xl font-bold text-center border-t">
-          {totalCartPrice.toLocaleString()}원
-          <span className="text-gray-500 text-xl font-normal">
-            총 주문 금액
-          </span>
-        </div>
+
       </div>
     </div>
   );
