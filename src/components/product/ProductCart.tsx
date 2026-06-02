@@ -32,9 +32,6 @@ const ProductCart = ({ item, counts, onClickPlus, onClickMinus,onDeleteCart }:Pr
             <div>
                 <div className='mb-4 lg:flex lg:flex-col-reverse min-w-0'>
                     <div className="text-sm font-bold leading-[18px] truncate line-clamp-1 lg:text-[20px] lg:leading-[190%]">{item.name}</div>
-                    {item.option.text && (
-                        <div>{item.option.text}</div>
-                    )}
                 </div>
                 <div className='inline-flex h-[28px] px-3 leading-[28px] border border-[#d3d3d3] rounded-[5px] [&_button]:text-[#d3d3d3] [&_button]:cursor-pointer'>
                     <button onClick={(e) => onClickMinus(e, item.id)} className='z-10'>-</button>				

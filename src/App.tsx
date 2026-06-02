@@ -9,7 +9,7 @@ import BottomMenu from './components/layout/BottomMenu';
 import SlideMenu from './components/layout/slideMenu/SlideMenu';
 import List from './components/layout/productList/List';
 import SearchList from './components/layout/productList/SearchList';
-import ProductDetail from './components/layout/ProductDetail';
+import ProductDetail from './components/layout/detail/ProductDetail';
 import Cart from './components/layout/Cart';
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { ProductData,ProductItem } from './components/product/ProductData'
