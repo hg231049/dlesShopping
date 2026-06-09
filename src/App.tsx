@@ -13,7 +13,61 @@ import ProductDetail from './components/layout/detail/ProductDetail';
 import Cart from './components/layout/Cart';
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { ProductData,ProductItem } from './components/product/ProductData'
+
 function App() {
+  const [apiItems, setApiItems] = useState<any[]>([]); // 가공된 데이터를 담을 상자
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // 🌟 1. 상품이 100개나 들어있는 DummyJSON 서버에 요청을 보냅니다!
+    fetch('https://dummyjson.com/products?limit=100')
+      .then((res) => {
+        if (!res.ok) throw new Error('서버 연결 실패!');
+        return res.json();
+      })
+      .then((data) => {
+        // 🌟 2. [핵심] 서버에서 온 거친 데이터를 우리 마사지기 규격으로 완벽하게 번역(Formatting)합니다.
+        const formatted = data.products.map((item: any) => {
+          const dollarSalePrice = item.price;             // 서버가 준 최종 가격(할인가)
+          const discountRate = item.discountPercentage;   // 서버가 준 할인율 (%)
+          
+          // 수학 공식으로 역산해서 원본 정가 구하기 (달러 기준)
+          const dollarOrgPrice = dollarSalePrice / (1 - discountRate / 100);
+
+          return {
+            id: item.id,
+            name: item.title,      // 팩스 이름(title) ➡️ 내 이름표(name)로 매칭!
+            summary: item.category, // 카테고리를 서머리에 쏙!
+            
+            // 💸 달러 가격에 1350원을 곱하고 반올림해서 완벽한 한화(원)로 환산!
+            salePrice: Math.round(dollarSalePrice * 1350), 
+            orgPrice: Math.round(dollarOrgPrice * 1350),   // 계산된 정가 세팅!
+            
+            thumb: item.thumbnail, // 썸네일(thumbnail) ➡️ 내 이미지(thumb)로 매칭!
+            desc: [
+              item.description, 
+              `⭐ 평점: ${item.rating} / 5`, 
+              `📦 현재 남은 재고: ${item.stock}개`
+            ]
+          };
+        });
+
+        setApiItems(formatted); // 🌟 변신 완료된 이쁜 데이터를 상자에 적재!
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("데이터 변환 에러:", err);
+        setLoading(false);
+      });
+
+    // 1초 스플래시 타이머 (기존 코드 유지)
+    const timer = setTimeout(() => {
+      setIsHide(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // 1. 로딩 스플래시
   // 초기에는 로딩 스플래시 나타남(= 숨김처리x)
   const [isHide,setIsHide] = useState(false);
@@ -88,10 +142,10 @@ function App() {
           <Header cartCount={cart.length} />
           <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
             <Routes>
-              <Route path='/' element={<Home prdData={ProductData} onAddCart={addToCart}/>}/>
-              <Route path='/list/:path' element={<List prdData={ProductData} onAddCart={addToCart}/>}/>
-              <Route path='/searchList' element={<SearchList prdData={ProductData} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
-              <Route path='/detail/:id' element={<ProductDetail prdData={ProductData} onAddCart={addToCart}/>}/>
+              <Route path='/' element={<Home prdData={apiItems} onAddCart={addToCart}/>}/>
+              <Route path='/list/:path' element={<List prdData={apiItems} onAddCart={addToCart}/>}/>
+              <Route path='/searchList' element={<SearchList prdData={apiItems} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
+              <Route path='/detail/:id' element={<ProductDetail prdData={apiItems} onAddCart={addToCart}/>}/>
               <Route path='/cart' element={<Cart type="cart" cart={cart} onDeleteCart={onDeleteCart}/>}/>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

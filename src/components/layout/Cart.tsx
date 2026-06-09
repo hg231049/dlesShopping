@@ -72,7 +72,7 @@ const Cart = ({ cart, type,onDeleteCart }:CartProps) => {
               onClickPlus={onClickPlus}
               onClickMinus={onClickMinus}
               onDeleteCart={onDeleteCart}
-              className="gap-y-20"
+              className=""
             />
             <div className="totalPrice flex flex-col gap-3 mt-10 pt-10 text-3xl font-bold text-center border-t">
               {totalCartPrice.toLocaleString()}원

@@ -12,10 +12,10 @@ interface VisualItem {
 }
 
 const Main_visual:VisualItem[] = [
-  { id: 1, alt:"메인 비주얼1", link: "#none", src:mainVisual1, desc:"하루의 발 피로를 풀어주는 \n발편한케어 V2", subDesc:"더 강력해진 케어로 돌아온 V2" },
-  { id: 2, alt:"메인 비주얼2", link: "#none", src:mainVisual2, desc:"4세대 마사지 경추베개의 탄생 \n목 마사지 베개 V2", subDesc:"에어백 · 진동 · 온열 올인원 케어"},
+  { id: 1, alt:"메인 비주얼1", link: "#none", src:mainVisual1, desc:"하루의 피로를 풀어주는 \n발마사지기", subDesc:"더 강력해진 케어로 돌아온 마사지기" },
+  { id: 2, alt:"메인 비주얼2", link: "#none", src:mainVisual2, desc:"공신력 1위 \n소비지만족지수 1위", subDesc:"100% 환불 보장"},
   { id: 3, alt:"메인 비주얼3", link: "#none", src:mainVisual3 , desc:"정형외과 전문의 공동 개발 \n병원의 케어를 일상으로", subDesc:"인체구조를 고려한 회복중심의 설계"},
-  { id: 4, alt:"메인 비주얼4", link: "#none", src:mainVisual4, desc:"허리를 위한 집중 설계 \n허리편한케어 V2", subDesc:"전문가의 손길을 담은 허리케어 솔루션"},
+  { id: 4, alt:"메인 비주얼4", link: "#none", src:mainVisual4, desc:"허리를 위한 집중 설계 \n허리마사지기", subDesc:"더 강력해진 케어로 돌아온 마사지기"},
   { id: 5, alt:"메인 비주얼5", link: "#none", src:mainVisual5 },
 ];
 

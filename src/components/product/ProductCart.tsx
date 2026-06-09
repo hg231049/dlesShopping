@@ -27,11 +27,11 @@ const ProductCart = ({ item, counts, onClickPlus, onClickMinus,onDeleteCart }:Pr
         <div className="prd-thumb relative max-w-[105px] rounded-[5px] overflow-hidden flex-shrink-0 lg:max-w-[100px]">
             <img src={item.thumb} alt={item.name} className='w-full' />
         </div>
-        <div className="prd-description flex items-end justify-between w-full gap-[10px] min-w-0">
+        <div className="prd-description flex flex-wrap items-end justify-between w-full gap-[10px] min-w-0">
             {/* 상품정보, 수량선택 */}
             <div>
                 <div className='mb-4 lg:flex lg:flex-col-reverse min-w-0'>
-                    <div className="text-sm font-bold leading-[18px] truncate line-clamp-1 lg:text-[20px] lg:leading-[190%]">{item.name}</div>
+                    <div className="text-sm font-bold leading-[18px] lg:text-[20px] lg:leading-[190%]">{item.name}</div>
                 </div>
                 <div className='inline-flex h-[28px] px-3 leading-[28px] border border-[#d3d3d3] rounded-[5px] [&_button]:text-[#d3d3d3] [&_button]:cursor-pointer'>
                     <button onClick={(e) => onClickMinus(e, item.id)} className='z-10'>-</button>				

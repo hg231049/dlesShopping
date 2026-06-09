@@ -9,7 +9,7 @@ interface MainNewProps {
 }
 const New = ({ type,onAddCart,prdData }:MainNewProps) => {
     // 1. 초기 노출 상품 4개
-    const [visibleCount,setVisibleCount] = useState(2);
+    const [visibleCount,setVisibleCount] = useState(3);
 
     return (
 

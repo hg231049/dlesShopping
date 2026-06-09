@@ -1,5 +1,5 @@
 // src/assets/main/index.js
-import logo from './logo.png';
+import logo from './logo.jpg';
 import iconLogout from './icon_logout.png';
 import iconMy from './icon_my.png';
 import iconCart from './icon_cart.png';
@@ -9,11 +9,11 @@ import fixedIconCart from './fixed_icon_cart.png';
 import fixedIconHome from './fixed_icon_home.png';
 import fixedIconSearch from './fixed_icon_search.png';
 import arrowRight from './arrow-right.png';
-import mainVisual1 from './main-visual1.png';
-import mainVisual2 from './main-visual2.png';
-import mainVisual3 from './main-visual3.png';
-import mainVisual4 from './main-visual4.png';
-import mainVisual5 from './main-visual5.png';
+import mainVisual1 from './main-visual1.jpg';
+import mainVisual2 from './main-visual2.jpg';
+import mainVisual3 from './main-visual3.jpg';
+import mainVisual4 from './main-visual4.jpg';
+import mainVisual5 from './main-visual5.jpg';
 import quickIcon1 from './quick-icon1.png';
 import quickIcon2 from './quick-icon2.png';
 import quickIcon3 from './quick-icon3.png';
