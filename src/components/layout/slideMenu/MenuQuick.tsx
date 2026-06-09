@@ -1,5 +1,6 @@
 
-import { IconMy, IconCart, IconOrder, IconLogout,IconSearch} from '../../icon/Icon'
+import { CiUser,CiLogout,CiViewList,CiSearch } from "react-icons/ci";
+import { PiHandbagSimpleThin } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 interface QuickMenuItem {
@@ -18,10 +19,10 @@ interface MenuQuickProps {
 
 
 const Quick_Menu:QuickMenuItem[] = [
-    { id: 1, name: "마이페이지", link: "#none", icon:IconMy },
-    { id: 2, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true },
-    { id: 3, name: "주문조회", link: "#none", icon:IconOrder },
-    { id: 4, name: "로그아웃", link: "#none", icon:IconLogout },
+    { id: 1, name: "마이페이지", link: "#none", icon:CiUser },
+    { id: 2, name: "장바구니", link: "/cart", icon:PiHandbagSimpleThin, cartCnt:true },
+    { id: 3, name: "주문조회", link: "#none", icon:CiViewList  },
+    { id: 4, name: "로그아웃", link: "#none", icon:CiLogout  },
 ];
 
 const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}:MenuQuickProps) => {
@@ -67,7 +68,7 @@ const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}:MenuQuickPro
                 <form onSubmit={handleSearchSubmit}>
                     <input value={search} onChange={onChangeSearch} type="text" placeholder='검색어를 입력해 주세요' className='w-full h-[50px] border-b boder-black text-md'/>
                 </form>
-                <button type='submit' onClick={handleSearchSubmit} className='absolute top-1/2 right-0 -translate-y-1/2'><IconSearch/></button>
+                <button type='submit' onClick={handleSearchSubmit} className='absolute top-1/2 right-0 -translate-y-1/2'><CiSearch size={24}/></button>
             </div>
         </div>
     )

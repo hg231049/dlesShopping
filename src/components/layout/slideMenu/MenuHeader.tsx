@@ -24,7 +24,7 @@ const MenuHeader = ({onClickMenuBar}:MenuHeaderProps) => {
                         <h3 className="text-[18px] font-bold">이은서</h3>
                         <div className="flex justify-center items-center p-[1px_6px] rounded-[5px] bg-[#ECDDCD]"><span className="text-xs text-brand-color font-medium">웰컴</span></div>
                     </div>
-                    <p className="p-[4px_0_0] text-[14px]">하루의 피로, 슬룸으로 새로고침</p>
+                    <p className="p-[4px_0_0] text-[14px]">하루의 마무리를 함께하세요</p>
                     <button onClick={onClickMenuBar} className="absolute top-5 right-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M18 6L6 18M18 18L6 6" stroke="white" strokeLinecap="round"/>

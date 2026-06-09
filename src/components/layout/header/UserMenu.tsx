@@ -1,4 +1,5 @@
-import { IconMy, IconCart } from '../../icon/Icon';
+import { CiUser } from "react-icons/ci";
+import { PiHandbagSimpleThin } from "react-icons/pi";
 import { Link } from 'react-router-dom';
 interface UserMenuItem {
     id: number; 
@@ -13,8 +14,8 @@ interface UserMenuProps {
 }
 
 const User_Menu:UserMenuItem[] = [
-  { id: 2, name: "회원가입", link: "#none", icon:IconMy },
-  { id: 3, name: "장바구니", link: "/cart", icon:IconCart, cartCnt:true  },
+  { id: 2, name: "회원가입", link: "#none", icon:CiUser },
+  { id: 3, name: "장바구니", link: "/cart", icon:PiHandbagSimpleThin, cartCnt:true  },
 ];
 const UserMenu = ({cartCount}:UserMenuProps) => {
     return (
