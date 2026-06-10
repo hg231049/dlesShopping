@@ -32,15 +32,15 @@ const ProductCard = ({ item, index, showIndex,onAddCart }:ProductCardProps) => (
             <PiHandbagSimpleThin/>
         </span>
     </div>
-    <div className="prd-description">
-    <div className="m-[10px_0_5px] text-sm font-bold leading-[ 98.629%] truncate line-clamp-1 lg:text-[22px] lg:m-[16px_0_18px]">
-        {item.name}
-    </div>
-    <ProductPrice 
-        orgPrice={item.orgPrice} 
-        salePrice={item.salePrice} 
-        className="lg:flex lg:flex-row-reverse lg:items-center lg:justify-end lg:gap-[9px]" 
-    />
+    <div className="prd-description min-w-0">
+        <div className="m-[10px_0_5px] text-sm font-bold leading-[ 98.629%] line-clamp-1 lg:text-[22px] lg:m-[16px_0_18px]">
+            {item.name}
+        </div>
+        <ProductPrice 
+            orgPrice={item.orgPrice} 
+            salePrice={item.salePrice} 
+            className="lg:flex lg:flex-row-reverse lg:items-center lg:justify-end lg:gap-[9px]" 
+        />
     </div>
   </div>
 );

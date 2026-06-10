@@ -26,7 +26,7 @@ const ProductHorizontal = ({ item,onAddCart }:ProductHorizontalProps) => (
     <div className="prd-description flex flex-col gap-[10px] min-w-0">
         <div className='lg:flex lg:flex-col-reverse min-w-0'>
             <div className="text-[#616161] text-[10px] leading-[190%] lg:text-[16px] lg:leading-[237.5%] lg:text-[#8E8E93]">{item.summary}</div>
-            <div className="text-sm font-bold leading-[18px] truncate line-clamp-1 lg:text-[20px] lg:leading-[190%]">{item.name}</div>
+            <div className="text-sm font-bold leading-[18px] line-clamp-1 lg:text-[20px] lg:leading-[190%]">{item.name}</div>
         </div>
         <ProductPrice 
             orgPrice={item.orgPrice} 

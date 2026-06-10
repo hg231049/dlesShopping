@@ -47,8 +47,8 @@ function App() {
             desc: [
               item.description, 
               `<div class="flex gap-[15px] text-gray-600">
-              <div>평점: ${item.rating}</div>
-              <div>재고: ${item.stock}개</div>
+                <div>평점: ${item.rating}</div>
+                <div>재고: ${item.stock}개</div>
               </div>`, 
             ]
           };
