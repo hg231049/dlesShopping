@@ -13,7 +13,9 @@ const Loading = ({isHide}:LoadingProps) => {
             }`}
             >
             <div className="loader-inner text-center">
-                <Logo/>
+                <span className='custom-loader-img'>
+                    <Logo/>
+                </span>
             </div>
             <style>
                 {`

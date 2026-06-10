@@ -22,7 +22,7 @@ const QuickMenu = () => {
                     {QUICK_MENU_LIST.map((item) => (
                     <div key={item.id}>
                         <a href={item.link}>
-                            <span className="flex justify-center items-center w-[55px] h-[55px] lg:w-[110px] lg:h-[110px] bg-brand-color rounded-[8px] text-white">
+                            <span className="flex justify-center items-center w-[55px] h-[55px] mx-auto lg:w-[110px] lg:h-[110px] bg-brand-color rounded-[8px] text-white">
                                 <item.icon size={30} />
                             </span>
                             <p className={`mt-[5px] lg:text-lg ${item.bold ? 'font-400 lg:font-bold' : 'font-normal'}`}>{item.name}</p>
