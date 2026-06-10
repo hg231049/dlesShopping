@@ -25,7 +25,7 @@ const New = ({ type,onAddCart,prdData }:MainNewProps) => {
                             loop 
                             muted 
                             playsInline preload="metadata" className="block w-full h-full rounded-[10px] object-fill">
-                            <source src="https://pub-de7ed6d295f04d408489e1732161f4ac.r2.dev/etc/testVideo.mp4" type="video/webm" />
+                            <source src="https://pub-de7ed6d295f04d408489e1732161f4ac.r2.dev/etc/testVideo.webm" type="video/webm" />
                         </video>
                     </div>
                     <div className="prd-box max-w-[695px]">
