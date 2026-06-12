@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,createContext, useContext } from 'react';
 import { Route,Routes,useNavigate,Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/header/Header';
@@ -14,19 +14,38 @@ import Cart from './components/layout/Cart';
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { ProductData,ProductItem } from './components/product/ProductData'
 
+export const ShopContext = createContext<ShopContextProps| undefined>(undefined);
+interface ShopContextProps {
+  apiItems: any[];
+  loading: boolean;
+  isHide: boolean;
+  cart: any[];
+  cartCount: number;
+  addToCart: (product: any) => void;
+  onDeleteCart: (e: React.MouseEvent, id: number) => void;
+  menuOpen: boolean;
+  onClickMenuBar: () => void;
+  search: string;
+  onChangeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+
 function App() {
+
+  // 외부 무료 상품 데이터 api호출
   const [apiItems, setApiItems] = useState<any[]>([]); // 가공된 데이터를 담을 상자
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 🌟 1. 상품이 100개나 들어있는 DummyJSON 서버에 요청을 보냅니다!
+    //  1. 서버에 데이터 요청하기
     fetch('https://dummyjson.com/products?limit=100')
       .then((res) => {
+        // 안전장치 걸기 - 서버나 인터넷에 문제가 생겼을 때 메세지보내도록 방어벽
         if (!res.ok) throw new Error('서버 연결 실패!');
-        return res.json();
+        return res.json(); //정상적인 경우 컴퓨터가 읽을 수 있는 깨끗한 데이터(json)로 변환
       })
       .then((data) => {
-        // 🌟 2. [핵심] 서버에서 온 거친 데이터를 우리 마사지기 규격으로 완벽하게 번역(Formatting)합니다.
+        //  2. [핵심] 서버에서 온 거친 데이터를 우리 마사지기 규격으로 완벽하게 번역(Formatting)합니다.
         const formatted = data.products.map((item: any) => {
           const dollarSalePrice = item.price;             // 서버가 준 최종 가격(할인가)
           const discountRate = item.discountPercentage;   // 서버가 준 할인율 (%)
@@ -39,7 +58,7 @@ function App() {
             name: item.title,      // 팩스 이름(title) ➡️ 내 이름표(name)로 매칭!
             summary: item.category, // 카테고리를 서머리에 쏙!
             
-            // 💸 달러 가격에 1350원을 곱하고 반올림해서 완벽한 한화(원)로 환산!
+            // 달러 가격에 1350원을 곱하고 반올림해서 완벽한 한화(원)로 환산!
             salePrice: Math.round(dollarSalePrice * 1350), 
             orgPrice: Math.round(dollarOrgPrice * 1350),   // 계산된 정가 세팅!
             
@@ -54,7 +73,7 @@ function App() {
           };
         });
 
-        setApiItems(formatted); // 🌟 변신 완료된 이쁜 데이터를 상자에 적재!
+        setApiItems(formatted); // 변신 완료된 이쁜 데이터를 상자에 적재!
         setLoading(false);
       })
       .catch((err) => {
@@ -139,22 +158,27 @@ function App() {
   return (
     
         <div className="body">
-          <Loading isHide={isHide}/>
-           <ScrollToTop />
-          <Header cartCount={cart.length} />
-          <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
-            <Routes>
-              <Route path='/' element={<Home prdData={apiItems} onAddCart={addToCart}/>}/>
-              <Route path='/list/:path' element={<List prdData={apiItems} onAddCart={addToCart}/>}/>
-              <Route path='/searchList' element={<SearchList prdData={apiItems} onAddCart={addToCart} search={search} onChangeSearch={onChangeSearch}/>}/>
-              <Route path='/detail/:id' element={<ProductDetail prdData={apiItems} onAddCart={addToCart}/>}/>
-              <Route path='/cart' element={<Cart type="cart" cart={cart} onDeleteCart={onDeleteCart}/>}/>
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </div>
-          <Footer/>
-          <BottomMenu cartCount={cart.length} onClickMenuBar={onClickMenuBar} />
-          <SlideMenu onClickMenuBar={onClickMenuBar} menuOpen={menuOpen} cartCount={cart.length} search={search} onChangeSearch={onChangeSearch}/>
+            <ShopContext.Provider value={{
+              isHide,loading,cart,cartCount: cart.length,apiItems,search,menuOpen,
+              addToCart,onChangeSearch,onDeleteCart,onClickMenuBar
+            }}>
+              <Loading/>
+              <ScrollToTop />
+              <Header/>
+              <div className={`main ${isHide ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
+                <Routes>
+                  <Route path='/' element={<Home/>}/>
+                  <Route path='/list/:path' element={<List/>}/>
+                  <Route path='/searchList' element={<SearchList/>}/>
+                  <Route path='/detail/:id' element={<ProductDetail/>}/>
+                  <Route path='/cart' element={<Cart type="cart"/>}/>
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </div>
+              <Footer/>
+              <BottomMenu/>
+              <SlideMenu/>
+          </ShopContext.Provider>
         </div>
     
   )

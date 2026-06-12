@@ -1,10 +1,9 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../App'
 import Logo from '../layout/Logo';
 
-interface LoadingProps {
-    isHide:boolean;
-}
-
-const Loading = ({isHide}:LoadingProps) => {
+const Loading = () => {
+    const { isHide } = useContext(ShopContext);
     return (
         <div 
             id="page-loader" 

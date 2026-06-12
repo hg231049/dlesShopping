@@ -3,22 +3,16 @@ import QuickMenu from './QuickMenu';
 import Best from './Best';
 import LineBn from './LineBn';
 import New from './New';
-import {ProductItem} from './ProductData';
 
-interface HomeProps {
-    prdData:ProductItem[];
-    onAddCart?:(data:ProductItem) => void;
-}
+const Home = () => {
 
-const Home = ({onAddCart,prdData}:HomeProps) => {
-    
     return (
         <div className="main-wrap">
             <Visual/>
             <QuickMenu/>
-            <Best prdData={prdData} type="best" onAddCart={onAddCart}/>
+            <Best type="best"/>
             <LineBn/>
-            <New  prdData={prdData} type="new" onAddCart={onAddCart}/>
+            <New type="new"/>
         </div>
     )
 }

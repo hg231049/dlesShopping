@@ -1,19 +1,16 @@
 import Product from "../../product/Product";
 import { useParams } from "react-router-dom";
-import { ProductItem } from '../../product/ProductData'
+import { useContext } from 'react';
+import { ShopContext } from '../../../App'
 
-interface ProductListProps {
-  prdData: ProductItem[];
-  onAddCart?: (data: ProductItem) => void;
-  className?: string;
-}
+const List = () => {
+  const { apiItems,addToCart } = useContext(ShopContext);
 
-const List = ({ onAddCart, prdData }: ProductListProps) => {
   // 🌟 1. 주소창의 /list/뒤에 붙은 단어(beauty, fragrances 등)를 싹 잡아옵니다!
   const { path } = useParams<{ path: string }>();
 
   // 🌟 2. 전체 100개 데이터 중, 현재 주소창에 적힌 카테고리와 일치하는 상품만 필터링!
-  const filteredItems = prdData.filter(item => item.summary === path);
+  const filteredItems = apiItems.filter(item => item.summary === path);
 
   // 🌟 3. [버그 수정] 전체 개수가 아니라, "실제 필터링된 상품 개수"를 세어줍니다!
   const prdTotal = filteredItems.length;
@@ -49,7 +46,7 @@ const List = ({ onAddCart, prdData }: ProductListProps) => {
           items={filteredItems} 
           type="list" 
           className="gap-y-20" 
-          onAddCart={onAddCart}
+          onAddCart={addToCart}
         />
       </div>
     </div>

@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+import { ShopContext } from '../../App'
 import Product from '../product/Product'
-import {ProductItem} from './ProductData'
 
 interface MainNewProps {
-    prdData:ProductItem[];
     type:string;
-    onAddCart?:(data:ProductItem) => void;
 }
-const New = ({ type,onAddCart,prdData }:MainNewProps) => {
+const New = ({ type }:MainNewProps) => {
+    const { apiItems,addToCart } = useContext(ShopContext);
+
     // 1. 초기 노출 상품 4개
     const [visibleCount,setVisibleCount] = useState(3);
 
@@ -29,7 +29,7 @@ const New = ({ type,onAddCart,prdData }:MainNewProps) => {
                         </video>
                     </div>
                     <div className="prd-box max-w-[695px]">
-                        <Product items={prdData} type={type} limit={visibleCount} onAddCart={onAddCart}/>
+                        <Product items={apiItems} type={type} limit={visibleCount} onAddCart={addToCart}/>
                     </div>
                 </div>
             </div>

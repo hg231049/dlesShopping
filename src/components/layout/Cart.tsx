@@ -1,11 +1,10 @@
 import Product from "../../components/product/Product";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { ShopContext } from '../../App'
 import { ProductItem } from '../product/ProductData'; 
 
 interface CartProps {
-  cart:ProductItem[];
   type:string;
-  onDeleteCart:(e:React.MouseEvent, id:number) => void;
 }
 
 // 가격을 숫자로 바꾸는 함수
@@ -15,7 +14,9 @@ const getPriceNumber = (price:string | number) => {
     : Number(String(price).replace(/[^0-9]/g, ""));
 };
 
-const Cart = ({ cart, type,onDeleteCart }:CartProps) => {
+const Cart = ({ type }:CartProps) => {
+  const { cart,onDeleteCart } = useContext(ShopContext);
+
     // 상품별 수량을 저장하는 state
   const [counts, setCounts] = useState<Record<number,number>>({});
 

@@ -1,4 +1,6 @@
 
+import { useContext } from "react";
+import { ShopContext } from '../../../App'
 import { CiUser,CiLogout,CiViewList,CiSearch } from "react-icons/ci";
 import { PiHandbagSimpleThin } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +12,6 @@ interface QuickMenuItem {
     icon:React.ComponentType<{ className?: string }>;
     cartCnt?:boolean;
 }
-interface MenuQuickProps {
-    cartCount:number;
-    search:string;
-    onChangeSearch:(e:React.ChangeEvent<HTMLInputElement>)=> void;
-    onClickMenuBar:() => void;
-}
-
 
 const Quick_Menu:QuickMenuItem[] = [
     { id: 1, name: "마이페이지", link: "#none", icon:CiUser },
@@ -25,7 +20,9 @@ const Quick_Menu:QuickMenuItem[] = [
     { id: 4, name: "로그아웃", link: "#none", icon:CiLogout  },
 ];
 
-const MenuQuick = ({cartCount,search,onChangeSearch,onClickMenuBar}:MenuQuickProps) => {
+const MenuQuick = () => {
+    const { cartCount,search,onChangeSearch,onClickMenuBar } = useContext(ShopContext);
+
     const navigate = useNavigate();
     // 검색 버튼 클릭 또는 엔터 시 실행될 함수
     const handleSearchSubmit = (e:React.FormEvent) => {

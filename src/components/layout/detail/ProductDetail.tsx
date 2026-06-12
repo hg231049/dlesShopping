@@ -1,16 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { useReducer } from 'react';
-import {ProductItem,OptionItem} from '../../product/ProductData';
+import { useReducer,useContext } from 'react';
+import { ShopContext } from '../../../App'
 import PrdOption from './PrdOption';
 import PrdInfo from './PrdInfo';
 import PrdThumb from './PrdThumb';
 import TotalPrice from './TotalPrice';
 import BuyBtn from './BuyBtn';
 
-interface ProductDetailProps {
-    prdData:ProductItem[];
-    onAddCart?:(data:ProductItem) => void;
-}
 
 interface ActionType {
     type:'INCREASE'|'DECREASE';
@@ -30,23 +26,23 @@ function calcDiscount(salePrice:number, orgPrice:number) {
     return Math.round((orgPrice - salePrice) / orgPrice * 100);
   }
 
-const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
-     
-
+const ProductDetail = () => {
+    const { apiItems } = useContext(ShopContext);
+    // 총 상품 가격 및 개수
+    const [state,dispatch] = useReducer(reducer,1);
     // useParams : 현재 브라우저 주소창(URL)에 적힌 파라미터(변수) 값을 쏙 빼서 쓸 수 있게 해주는 도구
     const { id } = useParams(); // 주소창의 :id 값을 가져옵니다 (문자열)
 
     // 1. prdData에서 주소창의 id와 일치하는 상품 하나를 찾습니다.
     // id는 숫자고 useParams로 가져온 건 문자열이라 Number()로 맞춰줍니다.
-    const product = prdData.find(item => item.id === Number(id));
+    const product = apiItems.find(item => item.id === Number(id));
 
     // 만약 상품이 없다면 예외 처리
     if (!product) {
         return <div className="py-20 text-center">상품을 찾을 수 없습니다.</div>;
     }
 
-    // 총 상품 가격 및 개수
-    const [state,dispatch] = useReducer(reducer,1);
+
     const onClickPlus = () => {
        dispatch({
             type:"INCREASE",
@@ -91,7 +87,7 @@ const ProductDetail = ({prdData,onAddCart}:ProductDetailProps) => {
                         <PrdInfo product={product} displayPercent={displayPercent} formatPrice={formatPrice}/>
                         <PrdOption product={product}/>
                         <TotalPrice totalPrice={totalPrice} state={state} onClickPlus={onClickPlus} onClickMinus={onClickMinus}/>
-                        <BuyBtn product={product} onAddCart={onAddCart}/>
+                        <BuyBtn product={product}/>
                     </div>
                 </div>
             </div>

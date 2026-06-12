@@ -5,11 +5,7 @@ import GNB from './GNB';
 import UserMenu from './UserMenu';
 import Logo from '../Logo';
 
-interface HeaderProps {
-    cartCount:number;
-}
-
-const Header = ({cartCount}:HeaderProps) => {
+const Header = () => {
     // 초기 상태에는 고정x
     const [isFixed, setIsFixed] = useState(false);
 
@@ -41,7 +37,7 @@ const Header = ({cartCount}:HeaderProps) => {
                         <div className="hidden lg:block">
                             <SUBGNB/>
                         </div>
-                        <UserMenu cartCount={cartCount}/>
+                        <UserMenu/>
                     </div>
                 </div>
                 

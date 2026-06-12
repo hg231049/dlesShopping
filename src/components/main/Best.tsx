@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import Product from '../product/Product'
 import {ProductItem} from './ProductData'
+import { ShopContext } from '../../App'
 
 interface MainBestProps {
-    prdData:ProductItem[];
     type:string;
-    onAddCart?:(data:ProductItem) => void;
 }
-const Best = ({type,onAddCart,prdData}:MainBestProps) => {
+const Best = ({type}:MainBestProps) => {
+    const { apiItems,addToCart } = useContext(ShopContext);
 
     // 1. 초기 노출 상품 4개
     const [visibleCount,setVisibleCount] = useState(4);
@@ -24,7 +24,7 @@ const Best = ({type,onAddCart,prdData}:MainBestProps) => {
                 <div className="main-title mb-5 lg:mb-10">
                     <h2 className="text-2xl font-bold lg:text-center lg:text-[36px]">SLOOM BEST</h2>
                 </div>
-                <Product items={prdData} type={type} limit={visibleCount} onAddCart={onAddCart}/>
+                <Product items={apiItems} type={type} limit={visibleCount} onAddCart={addToCart}/>
                 {visibleCount < totalProducts && (
                     <div onClick={handleShowMore} className='more-btn flex justify-center items-center gap-[10px] mt-[30px] p-[12px_10px] text-sm font-medium rounded-[10px] border border-[#c7c7c7] lg:inline-flex lg:relative lg:left-[50%] lg:translate-x-[-50%] lg:mt-[48px] lg:p-[16px_20px_16px_32px] lg:text-[18px]'>
                         상품 더 보기

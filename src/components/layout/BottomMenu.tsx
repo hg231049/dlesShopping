@@ -1,4 +1,6 @@
 import React from 'react';
+import { useContext } from "react";
+import { ShopContext } from '../../App'
 import { Link } from 'react-router-dom';
 import { SiHomebridge } from "react-icons/si";
 import { RiMenu2Line } from "react-icons/ri";
@@ -12,10 +14,6 @@ interface BottomMenuItem {
     icon: React.ComponentType<{ className?: string }>;
     cartCnt?:boolean;
 }
-interface BottomMenuProps {
-    cartCount: number; 
-    onClickMenuBar:() => void;// 메뉴바를 여는 함수이므로 매개변수 없이 실행되도록 매칭
-}
 
 const Bottom_Menu:BottomMenuItem[] = [
     { id: 1, name: "카테고리", link: "#none", icon:RiMenu2Line },
@@ -24,7 +22,9 @@ const Bottom_Menu:BottomMenuItem[] = [
     { id: 4, name: "장바구니", link: "/cart", icon:PiHandbagSimpleThin, cartCnt:true },
     { id: 5, name: "검색", link: "/searchList", icon:CiSearch },
 ];
-const BottomMenu = ({cartCount,onClickMenuBar}:BottomMenuProps) => {
+
+const BottomMenu = () => {
+    const { cartCount,onClickMenuBar } = useContext(ShopContext);
     return (
         <div className="bottomMenu block fixed bottom-0 w-full bg-white border-t border-[#acacac] z-10 lg:hidden">
             <nav>
