@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 import { CiUser,CiLogout,CiViewList,CiSearch } from "react-icons/ci";
 import { PiHandbagSimpleThin } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';

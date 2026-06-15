@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from "react";
-import { ShopContext } from '../../App'
+import { ShopContext } from '../../context/ShopContext'
 import { Link } from 'react-router-dom';
 import { SiHomebridge } from "react-icons/si";
 import { RiMenu2Line } from "react-icons/ri";

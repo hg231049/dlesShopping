@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useReducer,useContext } from 'react';
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 import PrdOption from './PrdOption';
 import PrdInfo from './PrdInfo';
 import PrdThumb from './PrdThumb';

@@ -1,7 +1,6 @@
 import { useState,useContext } from 'react';
 import Product from '../product/Product'
-import {ProductItem} from './ProductData'
-import { ShopContext } from '../../App'
+import { ShopContext } from '../../context/ShopContext'
 
 interface MainBestProps {
     type:string;

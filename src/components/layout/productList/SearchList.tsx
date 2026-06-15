@@ -2,7 +2,7 @@ import Product from "../../product/Product";
 import { IconSearch} from '../../icon/Icon'
 import React from "react";
 import { useContext } from 'react';
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 
 
 const SearchList = () => {

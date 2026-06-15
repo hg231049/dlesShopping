@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 import {ProductItem} from '../../product/ProductData';
 interface BuyBtnProps {
     product:ProductItem;

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 
 interface userBenefitItem {
     id: number;

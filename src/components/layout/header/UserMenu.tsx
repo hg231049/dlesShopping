@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 import { CiUser } from "react-icons/ci";
 import { PiHandbagSimpleThin } from "react-icons/pi";
 import { Link } from 'react-router-dom';

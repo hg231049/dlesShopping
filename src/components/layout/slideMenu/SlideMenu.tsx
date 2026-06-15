@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ShopContext } from '../../../App'
+import { ShopContext } from '../../../context/ShopContext'
 import MenuHeader from "./MenuHeader";
 import MenuQuick from "./MenuQuick";
 import SlideCate from "./SlideCate";

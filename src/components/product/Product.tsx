@@ -1,4 +1,6 @@
 
+import React, { useContext } from 'react';
+import { ShopContext } from '../../context/ShopContext'
 import ProductCard from './ProductCard';
 import ProductHorizontal from './ProductHorizontal';
 import ProductCart from './ProductCart';
@@ -18,7 +20,10 @@ interface ProductProps {
     onDeleteCart?:(e:React.MouseEvent,id:number) => void;
 }
 
-const Product = ({ items, limit, type,onAddCart,onClickPlus,onClickMinus,totalPrice,counts,onDeleteCart,className = "" }:ProductProps) => {
+const Product = ({ items, limit, type,className = "" }:ProductProps) => {
+    const context = useContext(ShopContext);
+    if (!context) return null;
+    const { counts, onClickPlus, onClickMinus, onDeleteCart, addToCart } = context;
 
     const isHorizontal = type === 'new' || type === 'cart' ;
     // 타입에 따라 그리드/플렉스 레이아웃 결정
@@ -36,12 +41,12 @@ const Product = ({ items, limit, type,onAddCart,onClickPlus,onClickMinus,totalPr
                 <div className='prd-item [.rowGrid_&]:mb-[20px] [.rowGrid_&]:pb-[20px] [.rowGrid_&:last-child]:mb-0 [.rowGrid_&:last-child]:pb-0 [.rowGrid_&]:border-b [.rowGrid_&]:border-[rgba(192,192,192,0.2)] [.rowGrid_&]:last:border-0' key={`${item.id}-${index}`}>
                     <Link to={`/detail/${item.id}`}>
                         {type === 'new'  ? (
-                            <ProductHorizontal item={item} onAddCart={onAddCart!}/>
+                            <ProductHorizontal item={item} onAddCart={addToCart!}/>
                         ) :  type === 'cart' ? (
                             <ProductCart item={item} onClickPlus={onClickPlus!} onClickMinus={onClickMinus!} onDeleteCart={onDeleteCart!} counts={counts}/>
                         )
                         : (
-                            <ProductCard item={item} index={index} showIndex={type === 'best'} onAddCart={onAddCart!}/>
+                            <ProductCard item={item} index={index} showIndex={type === 'best'} onAddCart={addToCart!}/>
                         )}
                     </Link>
                 </div>

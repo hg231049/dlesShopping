@@ -1,5 +1,5 @@
 import { useState,useContext } from 'react';
-import { ShopContext } from '../../App'
+import { ShopContext } from '../../context/ShopContext'
 import Product from '../product/Product'
 
 interface MainNewProps {
