@@ -13,7 +13,8 @@
 } 
 @theme {
   /* 여기서 바로 변수를 등록하면 Tailwind 클래스가 생성됩니다 */
-  --color-brand-color: #b53720;
+  /*--color-brand-color: #b53720;*/
+  --color-brand-color: #002353;
   --color-sub-color:#E5CDB5;
   --color-point-color:#80BAFF;
   --color-sale-color:#FE2B00;

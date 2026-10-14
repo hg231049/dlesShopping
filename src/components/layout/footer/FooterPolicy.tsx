@@ -6,7 +6,7 @@ interface PolicyMenuItem {
     textDeco?:boolean;
 }
 const Policy_Menu:PolicyMenuItem[] = [
-  { id: 1, name: "주식회사 올릿리테일", link: "#none", textDeco:true},
+  { id: 1, name: "주식회사 dles", link: "#none", textDeco:true},
   { id: 2, name: "개인정보처리방침", link: "#none" , highlight: true},
   { id: 3, name: "이용약관", link: "#none" },
 ];

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { Link } from 'react-router-dom';
+import { ShopContext } from '../../../context/ShopContext'
 
 interface SubMenuItems {
     id: number; 
@@ -16,7 +18,7 @@ const cateMenu:CateMenuItems[] = [
     {   
         id: 1, name: "제품구매하기", link: "#none",
         subItems : [
-            { id: 1, name: "전상품", link: "#none"},
+            { id: 1, name: "전상품", link: "/list/beauty"},
             { id: 2, name: "단독세트", link: "#none"},
             { id: 3, name: "베스트", link: "#none"},
             { id: 4, name: "신상품", link: "#none"},
@@ -43,11 +45,11 @@ const cateMenu:CateMenuItems[] = [
 ];
 
 const SlideCate = () => {
+    const { onClickMenuBar } = useContext(ShopContext);
     const [openCate,setOpenCate] = useState(null);
 
     const onClickCate = (id:number) => {
         setOpenCate(openCate === id ? null : id);
-        
     }
     return(
         <div className="menu-wrap py-[5px] px-5 border-b-[10px] border-[#FBFBFB]">
@@ -56,7 +58,9 @@ const SlideCate = () => {
                         {cateMenu.map((item)=>
                         <li key={item.id} value={openCate} onClick={()=>onClickCate(item.id)} >
                             <div className="relative">
-                                <p className="p-[15px_0_10px] text-[18px] font-bold"><a href={item.link}>{item.name}</a></p>
+                                <p className="p-[15px_0_10px] text-[18px] font-bold">
+                                    <Link to={item.link}>{item.name}</Link>
+                                </p>
                                 {item.subItems &&(
                                 <div className={`absolute top-1/2 right-0 -translate-y-1/2transition-all duration-500 ease-in-out  ${openCate === item.id  ? "rotate-180" : "rotate-0"}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -70,7 +74,9 @@ const SlideCate = () => {
                                     {openCate === item.id &&
                                     <ul className="[&_li]:p-[9px_0_9px_10px] [&_li]:text-[16px]">
                                         {item.subItems.map((subItems,idx)=>
-                                            <li key={`${item.id}-${subItems.id}`}><a href={subItems.link}>{subItems.name}</a></li>
+                                            <li key={`${item.id}-${subItems.id}`}>
+                                                <Link to={subItems.link}>{subItems.name}</Link>
+                                            </li>
                                         )}
                                     </ul>
                                     }

@@ -24,7 +24,7 @@ const FooterCs = () => {
                 </div>
                 ))}
             </div>
-            <p className="copy mt-[30px] text-xs text-gray-400 lg:text-right lg:mt-6">ⓒ 슬룸(주). All Rights Reserved.</p>
+            <p className="copy mt-[30px] text-xs text-gray-400 lg:text-right lg:mt-6">ⓒ dles(주). All Rights Reserved.</p>
         </div>
     );
 }
