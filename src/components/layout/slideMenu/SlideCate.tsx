@@ -45,7 +45,6 @@ const cateMenu:CateMenuItems[] = [
 ];
 
 const SlideCate = () => {
-    const { onClickMenuBar } = useContext(ShopContext);
     const [openCate,setOpenCate] = useState(null);
 
     const onClickCate = (id:number) => {
@@ -56,7 +55,14 @@ const SlideCate = () => {
                 <div className="cate">
                     <ul>
                         {cateMenu.map((item)=>
-                        <li key={item.id} value={openCate} onClick={()=>onClickCate(item.id)} >
+                        <li key={item.id}  
+                            value={openCate} 
+                            onClick={() => {
+                                if(item.subItems.length > 0){
+                                    onClickCate(item.id)
+                                }
+                            }
+                        } >
                             <div className="relative">
                                 <p className="p-[15px_0_10px] text-[18px] font-bold">
                                     <Link to={item.link}>{item.name}</Link>

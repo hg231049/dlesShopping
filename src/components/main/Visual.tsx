@@ -40,6 +40,7 @@ const Visual = () => {
                     }}
                     className="main-swiper [&_.swiper-wrapper]:items-start" // 클래스명을 주면 스타일 잡기 편해요
                     >
+                    {/* loop 기능으로 개수 늘리기 [...Main_visual, ...Main_visual] */}
                     {[...Main_visual, ...Main_visual].map((item, index) => (
                         <SwiperSlide key={`${item.id}-${index}`} className='relative transition-transform lg:origin-top ease-in-out duration-500 scale-92 [&.swiper-slide-active]:scale-100'>
                             <a href={item.link}>
